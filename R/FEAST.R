@@ -95,8 +95,8 @@ FEAST <- function(C, metadata, EM_iterations = 1000, COVERAGE = NULL ,different_
 
   for(it in 1:num_sinks){
     
-    if(it%%10==0 || it == num_sinks)
-      print(paste0("Calculating mixinig proportions for sink ", it))
+    #if(it%%10==0 || it == num_sinks)
+      print(paste0("Calculating mixinig proportions for sink #", it," id: ",Ids[it]))
 
     ###6. Assign ids to sinks and their corresponding sources - for every sink (test.id) match its sources (train.ix)
     if(different_sources_flag == 1){
@@ -144,8 +144,8 @@ FEAST <- function(C, metadata, EM_iterations = 1000, COVERAGE = NULL ,different_
   rownames(proportions_mat) <- envs_sink
   # proportions_mat[is.na(proportions_mat)] <- 999
 
-  setwd(dir_path)
-  write.table(proportions_mat, file = paste0(outfile,"_source_contributions_matrix.txt"), sep = "\t")
-  return(list = c(proportions_mat, FEAST_output))
-
+  #fout = glue::glue("{dir_path}/{outfile}_source_contributions.txt")
+  #write.table(proportions_mat, file = fout, sep = "\t")
+  #return(list = c(proportions_mat, FEAST_output))
+  return(proportions_mat)
 }
